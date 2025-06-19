@@ -85,13 +85,13 @@ if [ "$OS" == "macos" ]; then
     sed -i '' "s|icon=None|icon='$ICON_FILE'|g" $SPEC_FILE
     sed -i '' "/Analysis/s/(.*)/\0, hiddenimports=['PyQt5.QtSvg']/" $SPEC_FILE
     sed -i '' "/a.datas +=/a \\
-        datas=[('src/styles', 'styles'), ('src/icons', 'icons'), ('src/img', 'img'), ('src/lib', 'lib')],
+        datas=[('src/styles', 'styles'), ('src/icons', 'icons')],
     " $SPEC_FILE
 elif [ "$OS" == "linux" ]; then
     sed -i "s|icon=None|icon='$ICON_FILE'|g" $SPEC_FILE
     sed -i "/Analysis/s/(.*)/\0, hiddenimports=['PyQt5.QtSvg']/" $SPEC_FILE
     sed -i "/a.datas +=/a \\
-        datas=[('src/styles', 'styles'), ('src/icons', 'icons'), ('src/img', 'img'), ('src/lib', 'lib')],
+        datas=[('src/styles', 'styles'), ('src/icons', 'icons')],
     " $SPEC_FILE
 fi
 
@@ -105,14 +105,10 @@ if [ "$OS" == "macos" ]; then
 
     log "Copying resources into the app bundle..."
     mkdir -p "$APP_BUNDLE/styles"
-    mkdir -p "$APP_BUNDLE/img"
     mkdir -p "$APP_BUNDLE/icons"
-    mkdir -p "$APP_BUNDLE/lib"
 
     cp -R src/styles/* "$APP_BUNDLE/styles/"
-    cp -R src/img/* "$APP_BUNDLE/img/"
     cp -R src/icons/* "$APP_BUNDLE/icons/"
-    cp -R src/lib/* "$APP_BUNDLE/lib/"
 
 else
     log "Linux build does not require copying resources to a separate directory, as it is a single-file executable."

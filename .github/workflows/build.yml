@@ -33,7 +33,7 @@ jobs:
       # Step 4: Build the .exe file
       - name: Build executable with PyInstaller
         run: |
-          pyinstaller --onefile --noconsole --name Configurator --icon src/icons/icon.ico --add-data "src/styles;styles" --add-data "src/icons;icons" --add-data "src/lib;lib" src/convert.py
+          pyinstaller --onefile --noconsole --name Configurator --icon src/icons/icon.ico --add-data "src/styles;styles" --add-data "src/icons;icons" src/convert.py
 
       # Step 5: Move the compiled executable to dist/windows
       - name: Move Configurator.exe to dist/windows
