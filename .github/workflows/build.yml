@@ -33,22 +33,22 @@ jobs:
       # Step 4: Build the .exe file
       - name: Build executable with PyInstaller
         run: |
-          pyinstaller --onefile --noconsole --name Configurator --icon src/icons/icon.ico --add-data "src/styles;styles" --add-data "src/icons;icons" src/convert.py
+          pyinstaller --onefile --noconsole --name Convert --icon src/icons/icon.ico --add-data "src/styles;styles" --add-data "src/icons;icons" src/convert.py
 
       # Step 5: Move the compiled executable to dist/windows
-      - name: Move Configurator.exe to dist/windows
+      - name: Move Convert.exe to dist/windows
         run: |
           if (-Not (Test-Path dist/windows)) { New-Item -ItemType Directory -Path dist/windows }
-          if (Test-Path dist/windows/Configurator.exe) { Remove-Item dist/windows/Configurator.exe }
-          Move-Item dist\Configurator.exe dist\windows\Configurator.exe
+          if (Test-Path dist/windows/Convert.exe) { Remove-Item dist/windows/Convert.exe }
+          Move-Item dist\Convert.exe dist\windows\Convert.exe
 
       # Step 6: Commit the .exe file to the dev branch
       - name: Commit .exe to dev branch
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add dist/windows/Configurator.exe
-          git commit -m "convert.py: Build executable Configurator.exe"
+          git add dist/windows/Convert.exe
+          git commit -m "convert.py: Build executable Convert.exe"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
