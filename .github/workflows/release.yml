@@ -22,7 +22,7 @@ jobs:
 
       # Step 3: Create ZIP file
       - name: Create ZIP file
-        run: zip -r "${{ env.TAG_NAME }}.zip" .
+        run: zip -r "source.zip" .
 
       # Step 4: Generate Changelog with Fallback
       - name: Generate Changelog
@@ -69,24 +69,24 @@ jobs:
           asset_name: source.zip
           asset_content_type: application/zip
 
-      # Step 7: Upload Configurator.exe Asset
-      - name: Upload Configurator.exe
+      # Step 7: Upload Convert.exe Asset
+      - name: Upload Convert.exe
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist/windows/Configurator.exe
-          asset_name: Configurator.exe
+          asset_path: ./dist/windows/Convert.exe
+          asset_name: Convert.exe
           asset_content_type: application/octet-stream
 
-      # Step 8: Upload Configurator.dmg Asset
-      - name: Upload Configurator.dmg
+      # Step 8: Upload Convert.dmg Asset
+      - name: Upload Convert.dmg
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist/macos/Configurator.dmg
-          asset_name: Configurator.dmg
+          asset_path: ./dist/macos/Convert.dmg
+          asset_name: Convert.dmg
           asset_content_type: application/octet-stream

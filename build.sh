@@ -21,7 +21,7 @@ detect_os() {
 }
 
 # Set the name of the application
-NAME="Configurator"
+NAME="Convert"
 
 # Determine the operating system
 OS=$(detect_os)
@@ -64,7 +64,7 @@ if [ -f "$SPEC_FILE" ]; then
     rm -f "$SPEC_FILE"
 fi
 
-log ".spec file not found. Generating a new one with Configurator..."
+log ".spec file not found. Generating a new one with Convert..."
 if [ "$OS" == "macos" ]; then
     pyinstaller --windowed --name "$NAME" src/convert.py
 elif [ "$OS" == "linux" ]; then
